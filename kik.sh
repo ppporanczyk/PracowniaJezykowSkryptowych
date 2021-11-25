@@ -4,7 +4,7 @@ board=('-' '-' '-' '-' '-' '-' '-' '-' '-')
 end=0
 
 display() {
-	echo "BOARD"	>> game_board
+	echo "Board"	>> game_board
 	echo ${board[0]} ${board[1]} ${board[2]} >> game_board
 	echo ${board[3]} ${board[4]} ${board[5]} >> game_board
 	echo ${board[6]} ${board[7]} ${board[8]} >> game_board
@@ -21,13 +21,17 @@ response() {
 	done	
 }
 
-move_player_1() {
+move_player() {
 	while true; do
-		echo "$player_1! Enter a number of field."
+		echo "$curr_player! Enter a number of field."
 		read field
 		if [[ $field -lt 10 && $field -gt  0 ]] ; then	#sprawdza dostepnosc pola
 			if [[ ${board[$field-1]} == '-' ]] ; then
-				board[$field-1]="x"
+				if [[ $curr_player == $player_1 ]] ; then
+					board[$field-1]="x"
+				else
+					board[$field-1]="o"
+				fi 	
 				break
 			else
 				echo "Taken. Try again."
@@ -39,29 +43,12 @@ move_player_1() {
 	done
 }
 
-move_player_2() {
-	while true; do
-		echo "$player_2! Enter a number of field."
-		read field
-		if [[ $field -lt 10 && $field -gt  0 ]] ; then
-			if [[ ${board[$field-1]} == '-' ]] ; then
-				board[$field-1]="o"
-				break
-			else
-				echo "Taken. Try again."
-			fi 		
-		else
-			echo "Press from 1 to 9"
-			continue
-		fi
-	done
-}
 
 check() {
 	arr=(1 5 9 
 	     3 5 7 
 	     1 4 7 2 5 8 3 6 9
-	     1 2 3 4 5 6 7 8 9)	#mozliwosci wygranej
+	     1 2 3 4 5 6 7 8 9)	#mozliwosci wygranej, 8 roznych scenariuszy 
 	
 	for i in {0..7}; do
 		index_1=${arr[3*$i]}
@@ -83,7 +70,8 @@ save_info() {
 
 
 new_game=1  #czy zaczynamy nowa gre
-tie='0'			#zmienna kontroluajca remis
+tie=0			#zmienna kontroluajca remis
+
 
 if [[ -e game_board && -n game_board ]]; then	#jesli wczesniejsza gra zostala przerwana
 	length=$(cat game_board | wc -l)
@@ -107,13 +95,12 @@ if [[ -e game_board && -n game_board ]]; then	#jesli wczesniejsza gra zostala pr
 		read -a board <<< $last_saved
 		
 		count_empty=0
-		for index in {1..9}; do
+		for index in {0..8}; do
 			if [[ ${board[index]} == '-' ]];then
 				count_empty=$(($count_empty+1))
 			fi
 		done
-		round=$((8-$count_empty))	#zapisana liczba minionych rund
-		
+		round=$((9-$count_empty))	#zapisana liczba minionych rund
 	fi
 fi
 
@@ -121,8 +108,8 @@ if [[ $new_game == 1 ]]; then
 	
 	touch game_board
 	chmod 777 game_board
-	player_1='You'
-	player_2='Computer'
+	player_1='YOU'
+	player_2='COMPUTER'
 	
 	round=0			#licznik rund
 
@@ -135,16 +122,16 @@ if [[ $new_game == 1 ]]; then
 	elif [[ $mode == 1 ]]; then			#gra z innym graczem
 		echo "Enter the first player's name"
 		read pl_1
-		player_1=$pl_1
+		player_1=${pl_1^^}
 		echo "Enter the second player's name"
 		read pl_2
-		player_2=$pl_2
+		player_2=${pl_2^^}
 	fi
 
 	 
 	echo "Who starts? $player_1 - press \"0\", $player_2 - press \"1\""	
 	read who_starts		#0: gracz 1, 1: gracz 2
-	if [[ $player != 1 && $player != 0 ]]; then
+	if [[ $who_starts != 1 && $who_starts != 0 ]]; then
 		echo "Seriously? So $player_2 will start the game"	#walidacja zmiennej who_starts
 		who_starts=1
 	fi
@@ -154,18 +141,21 @@ save_info
 
 
 while [[ $end == 0 ]]; do
-	if [[ $round == 9  ]]; then	#koneic wolnych ruchow
-		tie='1'
+	if [[ $round == 9 ]]; then	#koniec wolnych ruchow
+		tie=1
 		break
 	fi
 	display
+	echo "Round: $(($round+1))"
 	if [[ $(($round % 2)) == $who_starts  ]]; then
-		move_player_1
+		curr_player=$player_1		#gracz, ktorego runda sie obecnie odbywa (w grze player vs player)
+		move_player
 	else 
 		if [[ $mode == 0 ]]; then
 			response
 		else
-			move_player_2
+			curr_player=$player_2
+			move_player
 		fi
 	fi
 	if [[ $round -gt 3 ]]; then
@@ -175,14 +165,14 @@ while [[ $end == 0 ]]; do
 	
 done
 
-if [[ tie -eq '1' ]]; then
-	echo "Tie!"
+if [[ $tie == 1 ]]; then
+	echo "TIE!"
 else
-	echo "The winner is..."
+	echo "THE WINNER IS..."
 	if [[ $(($[$round-$who_starts] % 2)) != 0 ]]; then
-		echo "$player_1"	
+		echo "${player_1^^}"	
 	else
-		echo "$player_2"
+		echo "${player_2^^}"
 	fi
 fi
 
