@@ -1,0 +1,17 @@
+{
+  "lookup": {
+    "eJyLrq6NBQAEOAGx": "action_listen",
+    "eJyLrq7VUaguKEoti09MLsnMz7NSqIYw4vMSc1OtFKCcnMziktQ8oNrS4tQioJrMPCC3xEohvSg1taS2NhYA6dwbhQ==": "utter_greet",
+    "eJyLrq7VUaguKEoti09MLsnMz7NSqIYw4vMSc1OtFKCcnMziktQ8oNrS4tQioJrMPCC3xEohvSg1taSWgBmlJSWpRfEQpbhMiAUAQvc0lw==": "action_listen",
+    "eJyLrq7VUaguKEoti09MLsnMz7NSqIYw4vMSc1OtFKCcnMziktQ8oNrS4tQioJrMPCC3xEohvSg1taSWgBmlJSWpRfEQpeSZQMgV+fkpSZWptbWxAExvTz0=": "utter_goodbye",
+    "eJyLrq7VUaguKEoti09MLsnMz7NSqIYw4vMSc1OtFKCcnMziktQ8oNrS4tQioJrMPCC3xEohvSg1taSWgBmlJSWpRfEQpeSZQMgV+fkpSZWpRLoDqhi3KbEAotRp8w==": "action_listen",
+    "eJyLrq7VUaguKEoti09MLsnMz7NSqIYw4vMSc1OtFKCcnMziktQ8oNrS4tQioJrMPCC3xEohvSg1taSWgBmlJSWpRfEQpeSZQMAV+QWpeZl56bW1sQBMuU9E": "opening_hours",
+    "eJydjkEKwCAMBL+SB/QFfqWUUEqwgTZKjL2If6+g5wq97cAw7FrqAiUqPbgfxkEclD5Q9pscDLg4GUlzcyJtDktDc+CVyOqkkc1Isav/CpMXIZKw+FllaHiGrOmjsr2lAmoF": "action_listen",
+    "eJydkFEKgCAQRK/iATqBV4kQq6GE2o11DUK8e0L+C/3NwOMxzJjLYPIluJ1fNDBZk7/gyJ+wppUjRAVVNkVIZQLVqtZsAmjpOJIqxH3oP0NnBV+gQFvP0jC3c5L429J7hHmdH5QyvUtvhKs=": "utter_goodbye",
+    "eJydkMsJgDAQRFtJAVaQVkSCn0EDuiubjSDB3g2Yq0S8zcDjMUybrsakXXC4flTPZE16gqN+gzWlrD4oKLMxQDLjKVe1ZhZAr4ojqkLcg/4zVFbwDvI01ywFcwtHCb8ttUeYp+HEx08K/G7pbj7Jn2E=": "action_listen",
+    "eJyLrq7VUaguKEoti09MLsnMz7NSqIYw4vMSc1OtFKCcnMziktQ8oNrS4tQioJrMPCC3xEohvSg1taSWgBmlJSWpRfEQpeSZQMAVual5pbW1sQBgXk4J": "show_menu",
+    "eJyLrq7VUaguKEoti09MLsnMz7NSqIYw4vMSc1OtFKCcnMziktQ8oNrS4tQioJrMPCC3xEohvSg1taSWgBmlJSWpRfEQpeSZQMAVual5pYSMKM7IL48HK8ShPRYAieBl5A==": "action_listen",
+    "eJydkFEKgCAQRK/iATqBV4kQq6GEXEPXIsS7J9m/4N8OvHkMO6Y8iHR6XEovbBxJkeqhSFtI8YfDBAYVNgb4whgqkaXYPMC54YjM8KqifYbGCguKLUXY3a0+sKve+oNz6/wg5+kFDziAig==": "utter_goodbye",
+    "eJydkFEKgCAQRK/iATqBV4kQq6GEXEPXIsS7J9VvGP3twJvHMm3KjUirx6b0wMaRFOk+FGkLKZ6wmMCgwsYAXxhDJbIUkwc4VxyRGV7d6D9D5QsLijVFmN2uLvBXvbaDc2N/4OMSD/xu6U7hbptA": "action_listen"
+  }
+}

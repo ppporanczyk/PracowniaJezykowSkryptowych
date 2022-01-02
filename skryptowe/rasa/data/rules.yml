@@ -1,0 +1,44 @@
+version: "3.0"
+
+rules:
+
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+  
+- rule: Say goodbye anytime the user says hi
+  steps:
+  - intent: greet
+  - action: utter_greet  
+  
+
+- rule: Show opening hours anytime the user ask
+  steps:
+  - intent: opening
+  - action: opening_hours
+
+
+- rule: Show menu anytime the user ask
+  steps:
+  - intent: menu
+  - action: show_menu
+  
+- rule: Propose placing an order anytime the user ask
+  condition:
+  - slot_was_set:
+    - is_opened: true
+  steps:
+  - action: utter_ask_order
+  - intent: ordering
+
+- rule: Refuse placing an order if restaurant is closed
+  condition:
+  - slot_was_set:
+    - is_opened: false
+  steps:
+  - intent: ordering
+  - action: utter_refuse_order
+  - action: opening_hours
+
+   

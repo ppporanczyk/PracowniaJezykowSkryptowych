@@ -1,0 +1,61 @@
+version: "3.0"
+
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+
+
+- intent: opening
+  examples: |
+    - Opening hours
+    - Open
+    - How long are you open
+    - Are you open
+    - Are you still working?
+    - Working hours
+    - Working
+    - Closing hours
+
+- intent: menu
+  examples: |
+    - Show me your menu
+    - Menu
+    - What can I order
+    - Food
+    - Offer
+
+- intent: ordering
+  examples: |
+    - I want to order
+    - I would like to order
+    - Make an order
+    - Place an order
+    - Offer
+    
+    

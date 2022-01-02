@@ -1,0 +1,28 @@
+version: "3.0"
+
+stories:
+
+- story: welcome path
+  steps:
+  - intent: greet
+  - action: utter_greet  
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: opening hours path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: opening
+  - action: opening_hours
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: menu path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: menu
+  - action: show_menu
+  - intent: goodbye
+  - action: utter_goodbye
