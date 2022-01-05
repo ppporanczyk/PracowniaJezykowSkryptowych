@@ -1,4 +1,4 @@
-“menu.json”
+
 {
   "items": [
     {
@@ -30,6 +30,6 @@
       "name": "Tiramisu",
       "price": 11,
       "preparation_time": 0.15
-    },
+    }
   ]
 }

@@ -5,7 +5,8 @@ stories:
 - story: welcome path
   steps:
   - intent: greet
-  - action: utter_greet  
+  - action: utter_greet
+  - action: utter_ask_order 
   - intent: goodbye
   - action: utter_goodbye
 
@@ -13,16 +14,62 @@ stories:
   steps:
   - intent: greet
   - action: utter_greet
+  - action: utter_ask_order
   - intent: opening
   - action: opening_hours
   - intent: goodbye
+  - action: utter_goodbye
+  
+- story: open on friday path
+  steps:
+  - user: |
+     hey
+    intent: greet
+  - action: utter_greet
+  - action: utter_ask_order
+  - user: |
+     Are you open on [friday]{"entity": "ask_day"}
+    intent: opening
+  - action: opening_hours
+  - user: |
+     bye
+    intent: goodbye
+  - action: utter_goodbye
+  
+- story: open on friday at 14 path
+  steps:
+  - user: |
+     hey
+    intent: greet
+  - action: utter_greet
+  - action: utter_ask_order
+  - user: |
+     Are you open on [friday]{"entity": "ask_day"} at [14]{"entity": "ask_hour"}
+    intent: opening
+  - action: opening_hours
+  - user: |
+     bye
+    intent: goodbye
   - action: utter_goodbye
 
 - story: menu path
   steps:
   - intent: greet
   - action: utter_greet
+  - action: utter_ask_order
   - intent: menu
   - action: show_menu
   - intent: goodbye
   - action: utter_goodbye
+  
+- story: User interrupts the form and doesn't want to continue
+  steps:
+  - intent: ordering
+  - action: utter_ask_order
+  - action: order_form
+  - active_loop: order_form
+  - intent: stop
+  - action: utter_ask_continue
+  - intent: stop
+  - action: action_deactivate_loop
+  - active_loop: null

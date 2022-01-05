@@ -33,13 +33,11 @@ nlu:
 
 - intent: opening
   examples: |
-    - Opening hours
+    - Opening hours on [Monday]{"entity": "ask_day"}
     - Open
-    - How long are you open
-    - Are you open
-    - Are you still working?
-    - Working hours
-    - Working
+    - How long are you open on [Monday]{"entity": "ask_day"}
+    - Are you open on [Monday]{"entity": "ask_day"} at [12]{"entity": "ask_hour"}
+    - Working hours on [Monday]{"entity": "ask_day"} at [12]{"entity": "ask_hour"}
     - Closing hours
 
 - intent: menu
@@ -57,5 +55,23 @@ nlu:
     - Make an order
     - Place an order
     - Offer
+
+- intent: stop
+  examples: |
+    - Stop
+    - I changed my mind
+    - Break
+    - Delete it
+  
     
-    
+- lookup: ask_day
+  examples: |
+    - Monday
+    - Tuesday
+    - Wednesday
+    - Thursday
+    - Friday
+    - Saturday
+    - Sunday
+
+

@@ -1,13 +1,55 @@
 version: "3.0"
 
-    
-    
+slots:
+  ask_day:
+    type: text
+    mappings:
+     - type: from_entity
+       entity: ask_day   
+  ask_hour:
+    type: float
+    min_value: 0
+    max_value: 24
+    mappings:
+     - type: from_entity
+       entity: ask_hour    
+  meal:
+    type: text
+    mappings:
+     - type: from_entity
+       entity: meal   
+  number:
+    type: float
+    min_value: 1
+    max_value: 1000
+    mappings:
+     - type: from_entity
+       entity: number   
+
+forms:
+  order_form:
+    required_slots:
+        - meal
+        - number
+        
+        
+entities:
+  - ask_day
+  - ask_hour
+  - meal
+  - number
+  
+                        
 intents:
   - greet
   - goodbye
-  - opening
+  - opening:
+     use_entities:
+     - ask_day
+     - ask_hour
   - menu
   - ordering
+
 
 responses:
   utter_greet:
@@ -19,13 +61,16 @@ responses:
   utter_ask_order:
   - text: "Do not hesitate, I can take your order"
   
-  utter_refuse_order:
-  - text: "Currently, we are closed."
-
+  utter_submit:
+  - text: "I got it! That all?"
+  
+  utter_ask_continue:
+  - text: "Are you sure? You lost your order"
+  
 actions:
- - opening_hours
- - show_menu
- - place_an_order
+  - opening_hours
+  - show_menu
+  - place_an_order
 
 session_config:
   session_expiration_time: 60
