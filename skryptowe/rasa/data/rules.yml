@@ -22,26 +22,15 @@ rules:
   - intent: menu
   - action: show_menu
   
-- rule: Propose placing an order anytime the user ask
-  steps:
-  - intent: ordering
-  - action: utter_ask_order
 
-- rule: Activate order form
+- rule: Ask for possibility to order
   steps:
+  - intent: start_ordering
+  - action: utter_ask_order
+  
+  
+- rule: Take an order when the user place it
+  steps:
+  - action: utter_ask_order
   - intent: ordering
-  - action: order_form
-  - active_loop: order_form
- 
-- rule: Submit order form
-  condition:
-  # Condition that form is active.
-  - active_loop: order_form
-  steps:
-  # Form is deactivated
-  - action: order_form
-  - active_loop: null
-  - slot_was_set:
-    - requested_slot: null
-  # The actions we want to run when the form is submitted.
-  - action: utter_submit
+  - action: place_an_order

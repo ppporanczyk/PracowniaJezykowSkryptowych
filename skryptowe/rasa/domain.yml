@@ -16,30 +16,15 @@ slots:
   meal:
     type: text
     mappings:
-     - type: from_entity
-       entity: meal   
-  number:
-    type: float
-    min_value: 1
-    max_value: 1000
-    mappings:
-     - type: from_entity
-       entity: number   
+     - type: from_text 
 
-forms:
-  order_form:
-    required_slots:
-        - meal
-        - number
-        
         
 entities:
   - ask_day
   - ask_hour
   - meal
-  - number
   
-                        
+            
 intents:
   - greet
   - goodbye
@@ -48,7 +33,10 @@ intents:
      - ask_day
      - ask_hour
   - menu
+  - start_ordering
   - ordering
+  - confirm
+  - stop
 
 
 responses:
@@ -59,13 +47,18 @@ responses:
   - text: "Bye"
   
   utter_ask_order:
-  - text: "Do not hesitate, I can take your order"
+  - text: "Put on your order here. Please, write meal separated by comma"
   
   utter_submit:
   - text: "I got it! That all?"
   
   utter_ask_continue:
   - text: "Are you sure? You lost your order"
+  
+  utter_confirm:
+  - text: "Do you confirm the order?"
+  
+
   
 actions:
   - opening_hours

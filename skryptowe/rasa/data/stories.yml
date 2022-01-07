@@ -44,7 +44,7 @@ stories:
   - action: utter_greet
   - action: utter_ask_order
   - user: |
-     Are you open on [friday]{"entity": "ask_day"} at [14]{"entity": "ask_hour"}
+     Are you open on [friday]{"entity": "ask_day"} [14]{"entity": "ask_hour"}
     intent: opening
   - action: opening_hours
   - user: |
@@ -62,14 +62,10 @@ stories:
   - intent: goodbye
   - action: utter_goodbye
   
-- story: User interrupts the form and doesn't want to continue
+- story: order path
   steps:
-  - intent: ordering
+  - intent: start_ordering
   - action: utter_ask_order
-  - action: order_form
-  - active_loop: order_form
-  - intent: stop
-  - action: utter_ask_continue
-  - intent: stop
-  - action: action_deactivate_loop
-  - active_loop: null
+  - intent: ordering
+  - action: place_an_order
+

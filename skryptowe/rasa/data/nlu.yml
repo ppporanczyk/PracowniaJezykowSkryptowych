@@ -33,11 +33,14 @@ nlu:
 
 - intent: opening
   examples: |
-    - Opening hours on [Monday]{"entity": "ask_day"}
+    - Opening hours on [Monday]{"entity": "ask_day"} [8]{"entity": "ask_hour"}
+    - Opening hours at [Tuesday]{"entity": "ask_day"} [14]{"entity": "ask_hour"}
     - Open
-    - How long are you open on [Monday]{"entity": "ask_day"}
-    - Are you open on [Monday]{"entity": "ask_day"} at [12]{"entity": "ask_hour"}
-    - Working hours on [Monday]{"entity": "ask_day"} at [12]{"entity": "ask_hour"}
+    - How long are you open on [Wendesday]{"entity": "ask_day"} [12]{"entity": "ask_hour"}
+    - How long are you open at [Thursday]{"entity": "ask_day"} [18]{"entity": "ask_hour"}
+    - Are you open on [Friday]{"entity": "ask_day"}  [22]{"entity": "ask_hour"}
+    - Working hours at [Saturday]{"entity": "ask_day"}  [4]{"entity": "ask_hour"}
+    - Working hours on [Sunday]{"entity": "ask_day"}  [10]{"entity": "ask_hour"}
     - Closing hours
 
 - intent: menu
@@ -48,13 +51,30 @@ nlu:
     - Food
     - Offer
 
-- intent: ordering
+- intent: start_ordering
   examples: |
     - I want to order
-    - I would like to order
-    - Make an order
-    - Place an order
-    - Offer
+    - Order
+    - I would like to have
+    - Can I order
+
+- intent: ordering
+  examples: |
+    - Pizza
+    - Foie gras, 2  pizza    
+    - Hot dog with ketchup
+    - Tiramisu, Pizza
+    - Spaghetti Carbonara without pasta
+    - 3 Pizza, 2 Hotdog with mustard
+    - Pizza without tomatoes, 2 Hot-dog
+
+- intent: confirm
+  examples: |
+    - Yes
+    - Y
+    - ofc
+    - Nice
+    - Confirm
 
 - intent: stop
   examples: |
@@ -62,6 +82,8 @@ nlu:
     - I changed my mind
     - Break
     - Delete it
+    - No
+    - n
   
     
 - lookup: ask_day
