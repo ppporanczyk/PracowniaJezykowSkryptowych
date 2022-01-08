@@ -62,10 +62,10 @@ nlu:
   examples: |
     - Pizza
     - Foie gras, 2  pizza    
-    - Hot dog with ketchup
+    - Hot-dog with ketchup
     - Tiramisu, Pizza
     - Spaghetti Carbonara without pasta
-    - 3 Pizza, 2 Hotdog with mustard
+    - 3 Pizza, 2 Hot-dog with mustard
     - Pizza without tomatoes, 2 Hot-dog
 
 - intent: confirm

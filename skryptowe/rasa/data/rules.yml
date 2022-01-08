@@ -34,3 +34,14 @@ rules:
   - action: utter_ask_order
   - intent: ordering
   - action: place_an_order
+  - action: utter_confirm
+  
+- rule: Confirm
+  steps:  
+  - intent: confirm
+  - action: when_pick_up
+  
+- rule: Stop
+  steps:  
+  - intent: stop
+  - action: delete_order

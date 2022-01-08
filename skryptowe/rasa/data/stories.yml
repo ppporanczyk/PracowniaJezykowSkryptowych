@@ -61,11 +61,23 @@ stories:
   - action: show_menu
   - intent: goodbye
   - action: utter_goodbye
-  
-- story: order path
+
+- story: order path v1
   steps:
   - intent: start_ordering
   - action: utter_ask_order
   - intent: ordering
   - action: place_an_order
-
+  - action: utter_confirm
+  - intent: confirm
+  - action: when_pick_up
+  
+- story: order path v2
+  steps:
+  - intent: start_ordering
+  - action: utter_ask_order
+  - intent: ordering
+  - action: place_an_order
+  - action: utter_confirm
+  - intent: stop
+  - action: delete_order

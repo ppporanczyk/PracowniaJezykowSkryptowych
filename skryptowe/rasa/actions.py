@@ -15,7 +15,6 @@ class OpeningHours(Action):
 	def run(self, dispatcher, tracker, domain):
 		slot_day = tracker.get_slot('ask_day')
 		slot_hour = tracker.get_slot('ask_hour')
-		print(slot_day,slot_hour)
 		try:
 			with open('data/opening_hours.json') as opening_file:
 				data = json.load(opening_file)
@@ -47,7 +46,7 @@ class OpeningHours(Action):
 			if data[day]['open']==0 and data[day]['close']==0:
 				response += """On {} we are closed\n""".format(day.lower())
 			else:
-				response +=  """We are closed at this time, visit us from {} to {}\n""".format(data[day]['open'], data[day]['close'])
+				response +=  """We are closed at this time, visit us on {} from {} to {}\n""".format(day.lower(), data[day]['open'], data[day]['close'])
 		else:
 			response += """Yes! On {} we are open from {} to {}\n""".format(day.lower(), data[day]['open'], data[day]['close'])
 		return response
@@ -110,7 +109,7 @@ class PlaceAnOrder(Action):
 					if pos['extra']:
 						response+="""\t {}\n""".format(pos['extra'])
 						
-				cost = self.count_bill(user_order, data)
+				cost, time = self.count_bill(user_order, data)
 				if unproper_order:
 					response+=unproper_order
 				response+="""\nIn total {}$\n""".format(cost)
@@ -118,10 +117,9 @@ class PlaceAnOrder(Action):
 				
 		except ValueError as e:
 			print(e)
-		return []
+		return [SlotSet("time", time)]
 
 	def read_meal(self, meal,position_menu):
-		print(meal)
 		single_pos = dict()
 		single_pos['meal']=position_menu
 		opt_list = ['with', 'without','no']
@@ -136,16 +134,39 @@ class PlaceAnOrder(Action):
 			if opt in meal:
 				index = meal.index(opt)
 				single_pos['extra']=meal[index:]
+				break
 				
 		return single_pos
 		
 	def count_bill(self, user_order,data):
 		result = 0
+		time=0
 		for order in user_order:
 			name =order['meal'][0].upper() + order['meal'][1:].lower()
 			for elem in data:
 				if elem['name'] ==name:
 					result+=elem['price']*order['number']
+					time+=elem['preparation_time']
 					break
-		return result
+		return result, time
 		
+class WhenPickUp(Action):
+	def name(self):
+		return "when_pick_up"
+		
+	def run(self, dispatcher, tracker, domain):
+		slot_time= float(tracker.get_slot('time'))
+		response = """Your order will be ready for {} minutes""".format(int(slot_time*60))							
+		dispatcher.utter_message(response)
+
+		return []
+
+class DeleteOrder(Action):
+	def name(self):
+		return "delete_order"
+		
+	def run(self, dispatcher, tracker, domain):
+		response = """I removed the order."""						
+		dispatcher.utter_message(response)
+
+		return [SlotSet("time", None),SlotSet("meal", None)]

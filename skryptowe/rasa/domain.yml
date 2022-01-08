@@ -17,14 +17,19 @@ slots:
     type: text
     mappings:
      - type: from_text 
+  time:
+    type: text
+    mappings:
+     - type: from_entity
+       entity: time    
 
         
 entities:
   - ask_day
   - ask_hour
   - meal
-  
-            
+  - time
+           
 intents:
   - greet
   - goodbye
@@ -64,6 +69,8 @@ actions:
   - opening_hours
   - show_menu
   - place_an_order
+  - when_pick_up
+  - delete_order
 
 session_config:
   session_expiration_time: 60
